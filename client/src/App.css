@@ -1,0 +1,8 @@
+.app{
+    background-image: url("homepage.jpg");
+    height: 520px;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: 50% 10%;
+    
+}
