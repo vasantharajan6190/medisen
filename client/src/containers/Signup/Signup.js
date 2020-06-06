@@ -115,8 +115,8 @@ function Signup(props){
 <div>
 <div className="form-row">
 <div className="form-group col-md-6">
-  <label htmlFor="inputEmail4" className="font-weight-bold">Clinic Id</label>
-  <input type="text" onChange={e=>onchange(e)} className="form-control" name="clinincid" id="inputEmail4" placeholder="Clinic ID" required/>
+  <label htmlFor="inputEmail4" className="font-weight-bold">Clinic Name</label>
+  <input type="text" onChange={e=>onchange(e)} className="form-control" name="clinicname" id="inputEmail4" placeholder="Clinic Name" required/>
 </div>
 <div className="form-group col-md-6">
 <label htmlFor="inputAddress" className="font-weight-bold">Specializations Available</label>
@@ -147,7 +147,7 @@ function Signup(props){
 </div>
 <div className="form-group col-md-6">
 <label htmlFor="inputAddress" className="font-weight-bold">Blood Pressure</label>
-<input type="text"  onChange={e=>onchange(e)} name="Blood Pressure"  className="form-control" id="inputAddress" placeholder="In numbers only" required/>
+<input type="text"  onChange={e=>onchange(e)} name="bloodpressure"  className="form-control" id="inputAddress" placeholder="In numbers only" required/>
 </div>
 </div>
 <div className="form-group">

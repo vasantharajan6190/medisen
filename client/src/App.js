@@ -7,15 +7,106 @@ import Login from "./containers/Login/Login"
 import { FaHandHoldingHeart,FaHeartbeat } from 'react-icons/fa';
 import Signup from "./containers/Signup/Signup"
 import Homepage from "./containers/Homepage/Homepage"
-
+import Appointments from "./containers/Appointments/Appointments"
 export const createcontext = createContext()
 export const Contextvariables = (props)=>{
   const [loggedin,setloggedin] = useState(false)
   const [currentuser,setcurrentuser] = useState()
+  const [appointments,setappointments] = useState([])
+  const [doctors,setdoctors] = useState([
+    {
+      name:"Vasantharajan",
+      email:"mahaperiyavar100@gmail.com",
+      password:"1234",
+      gender:"male",
+      address:"34,nadar street,vadugapatti",
+      mobile:"9677861286",
+      role:"Doctor",
+      mcino:"1545gh",
+      qualifications:"MBBS..,MD..",
+      specialization:"cardiologist",
+      from:"10.20AM",
+      to:"11.50AM"
+    },
+    {
+      name:"Karthi",
+      email:"mahaperiyavar100@gmail.com",
+      password:"1234",
+      gender:"male",
+      address:"34,nadar street,vadugapatti",
+      mobile:"9677861286",
+      role:"Doctor",
+      mcino:"1545gh",
+      qualifications:"MBBS..,MD..",
+      specialization:"cardiologist",
+      from:"10.20AM",
+      to:"11.50AM"
+    },
+    {
+      name:"Dhanasneyka",
+      email:"dhanasneyka@gmail.com",
+      password:"1234",
+      gender:"female",
+      address:"34,nadar street,vadugapatti",
+      mobile:"9003441975",
+      role:"Doctor",
+      mcino:"2345gh",
+      qualifications:"MBBS..,M.pharm..",
+      specialization:"Neurologist",
+      from:"11.30AM",
+      to:"1.30PM"
+    }
+  ])
+  const [clinic,setclinic] = useState([
+    {
+      name:"Santhi",
+      email:"santhiclinic@gmail.com",
+      password:"1234",
+      gender:"female",
+      address:"34,nadar street,vadugapatti",
+      mobile:"9003441975",
+      role:"Clinic",
+      clinicname:"Santhi Clinic",
+      specializations:"Neurologist Cardiologist",
+      from:"11.30AM",
+      to:"1.30PM"
+    },
+    {
+      name:"Gopal",
+      email:"gopalclinic@gmail.com",
+      password:"1234",
+      gender:"male",
+      address:"34,nadar street,vadugapatti",
+      mobile:"9003441975",
+      role:"Clinic",
+      clinicname:"Gopal clinic",
+      specializations:"Neurologist",
+      from:"11.30AM",
+      to:"1.30PM"
+    }
+  ])
+  const [patients,setpatients] = useState([
+    {
+      name:"Gopal",
+      email:"gopal@gmail.com",
+      password:"1234",
+      gender:"male",
+      address:"34,nadar street,vadugapatti",
+      mobile:"9003441975",
+      role:"Patient",
+      bloodpressure:120,
+      bloodgroup:"o+ve",
+      sugarlevel:120
+    }
+  ])
   return(
     <createcontext.Provider value={{
       loggedin : [loggedin,setloggedin],
-      currentuser:[currentuser,setcurrentuser]
+      currentuser:[currentuser,setcurrentuser],
+      appointments:[appointments,setappointments],
+      doctors:[doctors,setdoctors],
+      clinic:[clinic,setclinic],
+      patients:[patients,setpatients]
     }}>
     {props.children}
     </createcontext.Provider>
@@ -69,11 +160,16 @@ function App(props) {
     </div>
    </nav>
    </div>
-    <Switch>
+   {loggedin && currentuser.role==="patient"?
+   <div className="container">
+   <Link to="/appointments" className="float-right" style={{marginTop:"10px"}}><button className="btn btn-sm btn-warning text-center text-dark font-weight-bold">Your Appointments</button></Link>
+   </div>:null
+   } 
+   <Switch>
     <Route path="/homepage" exact component={Homepage}/>
     <Route path="/login" exact component={Login}/>
     <Route path="/signup" exact component={Signup}/>
-    
+    <Route path="/appointments" exact component={Appointments}/>
     <Route path="/medisen" exact>
     <div className="app">
     <div className="row container">
