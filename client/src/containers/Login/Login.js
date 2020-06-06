@@ -19,7 +19,7 @@ function Login(props){
         e.preventDefault()
         if(currentuser.email===user.email){
             if(currentuser.password===user.password){
-            toast.success("Successfully Registered",{className:"text-center mt-4 rounded"})
+            toast.success("Successfully Loggedin",{className:"text-center mt-4 rounded"})
             setloggedin(true)
             setcurrentuser(user)
             history.push("/homepage")

@@ -33,7 +33,7 @@ function App(props) {
   }
   function onclick(){
     setloggedin(false)
-    toast.success("Loggedout Successfully",{className:"text-center mt-4 rounded"})
+    toast.success("Logged out Successfully",{className:"text-center mt-4 rounded"})
   }
   return (
     <React.Fragment>
