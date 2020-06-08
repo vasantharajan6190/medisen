@@ -34,7 +34,7 @@ function Signup(props){
     }
       function onsubmit(e){
           e.preventDefault()
-          toast.success("Successfully Registered",{className:"text-center mt-4 rounded"})
+          toast.success("Successfully Registered",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
           setcurrentuser(user)
           setloggedin(true)
           history.push("/homepage")
@@ -96,7 +96,7 @@ function Signup(props){
 </div>
 <div className="form-group">
   <label htmlFor="inputAddress" className="font-weight-bold">Specialization</label>
-  <input type="text"  onChange={e=>onchange(e)} name="specialization"  className="form-control" id="inputAddress" placeholder="Cardiologist,Neuroligist,etc..." required/>
+  <input type="text"  onChange={e=>onchange(e)} name="specializations"  className="form-control" id="inputAddress" placeholder="Cardiologist,Neuroligist,etc..." required/>
 </div>
 <div className="form-group">
 <p className="font-weight-bold text-center">Select Your Consulting Hours</p>

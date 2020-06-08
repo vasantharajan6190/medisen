@@ -14,7 +14,7 @@ function Displaycard(props){
         if(appointments.length===0){
             currentcard.booked = !currentcard.booked
             currentcard.removed=!currentcard.removed
-            toast.success("Appointment Booked",{className:"text-center mt-4 rounded"})
+            toast.success("Appointment Booked",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
             setappointments([...appointments,{...currentcard}])
             history.push(routename)
             console.log(currentcard)
@@ -22,13 +22,13 @@ function Displaycard(props){
         else{
         appointments.map(res=>{
         if(currentcard.name===res.name){
-          toast.error("Already Booked",{className:"text-center mt-4 rounded"})
+          toast.error("Already Booked",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
           history.push(routename)
         }
         else{
             currentcard.booked = !currentcard.booked
             currentcard.removed=!currentcard.removed
-        toast.success("Appointment Booked",{className:"text-center mt-4 rounded"})
+        toast.success("Appointment Booked",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
         setappointments([...appointments,{...currentcard}])
         history.push(routename)
         console.log(currentcard)
@@ -38,7 +38,7 @@ function Displaycard(props){
         currentcard.booked = !currentcard.booked
         currentcard.removed=!currentcard.removed
         let indextodel=0
-        toast.success("Appointment cancelled",{className:"text-center mt-4 rounded"})
+        toast.success("Appointment cancelled",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
         e.preventDefault()
         appointments.map((result,index)=>{
             if(result.name===currentcard.name){
@@ -54,7 +54,7 @@ function Displaycard(props){
         <div className="card" style={{marginBottom:"20px"}}>
         <h3 className="card-header font-italic font-weight-bold text-white bg-dark">{currentcard.name}</h3>
         <div className="card-body" style={{backgroundColor:"aliceblue"}}>
-          <h3 className="card-title font-italic  font-weight-bold"> {currentcard.specialization.charAt(0).toUpperCase()+currentcard.specialization.slice(1)}</h3>
+          <h3 className="card-title font-italic  font-weight-bold"> {currentcard.specializations.charAt(0).toUpperCase()+currentcard.specializations.slice(1)}</h3>
           <p className="card-text font-weight-bold"><h5 className="font-italic font-weight-bold">Address:</h5> {currentcard.address}</p>
           <p className="font-weight-bold"><h5 className="font-italic font-weight-bold">Contact:</h5> {currentcard.mobile}</p>
           <h5 className="font-weight-bold font-italic">Consulting Hours:</h5>

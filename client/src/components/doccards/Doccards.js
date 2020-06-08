@@ -18,7 +18,7 @@ function Doccards({res}){
             }
         })
         docappointments.splice(indexto,1)
-        toast.success("Completed the appointment",{className:"text-center mt-4 rounded"})
+        toast.success("Completed the appointment",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
         history.push(routename)
     }
     return(

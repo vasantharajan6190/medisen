@@ -19,17 +19,17 @@ function Login(props){
         e.preventDefault()
         if(currentuser.email===user.email){
             if(currentuser.password===user.password){
-            toast.success("Successfully Loggedin",{className:"text-center mt-4 rounded"})
+            toast.success("Successfully Loggedin",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
             setloggedin(true)
             setcurrentuser(user)
             history.push("/homepage")
             }
             else{
-                toast.error("Password doen't match",{className:"text-center mt-4 rounded"})
+                toast.error("Password doen't match",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
             }
         }
         else{
-            toast.error("User Doesn't exists",{className:"text-center mt-4 rounded"})
+            toast.error("User Doesn't exists",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
             setuser("")
         }
       

@@ -42,7 +42,7 @@ export const Contextvariables = (props)=>{
       role:"Doctor",
       mcino:"1545gh",
       qualifications:"MBBS..,MD..",
-      specialization:"cardiologist",
+      specializations:"cardiologist",
       from:"10.20AM",
       to:"11.50AM"
     },
@@ -56,7 +56,7 @@ export const Contextvariables = (props)=>{
       role:"Doctor",
       mcino:"1545gh",
       qualifications:"MBBS..,MD..",
-      specialization:"cardiologist",
+      specializations:"cardiologist",
       from:"10.20AM",
       to:"11.50AM"
     },
@@ -70,7 +70,7 @@ export const Contextvariables = (props)=>{
       role:"Doctor",
       mcino:"2345gh",
       qualifications:"MBBS..,M.pharm..",
-      specialization:"Neurologist",
+      specializations:"Neurologist",
       from:"11.30AM",
       to:"1.30PM"
     }
@@ -143,7 +143,7 @@ function App(props) {
   }
   function onclick(){
     setloggedin(false)
-    toast.success("Logged out Successfully",{className:"text-center mt-4 rounded"})
+    toast.success("Logged out Successfully",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
   }
   return (
     <React.Fragment>
@@ -166,7 +166,7 @@ function App(props) {
   {loggedin?
     <div className="d-flex justify-content-between">
     <p className="pt-2 font-weight-bold">{currentuser.email.slice(0,5)}...</p>
-    <Link to="/medisen" className="mt-1"><button className="btn btn-sm btn-warning font-weight-bold ml-2 logout" onClick={onclick}>Log Out</button></Link>
+    <Link to="/medisen" className="mt-1"><button className="btn btn-sm btn-warning font-weight-bold ml-2 border border-dark logout px-3 font-italic" onClick={onclick}>Log Out</button></Link>
     </div>
     :
     <div className="d-flex">
@@ -179,9 +179,9 @@ function App(props) {
     </div>
    </nav>
    </div>
-   {loggedin && currentuser.role==="patient"?
+   {loggedin?
    <div className="container">
-   <Link to="/appointments" className="float-right" style={{marginTop:"10px"}}><button className="btn btn-sm btn-warning text-center text-dark font-weight-bold">Your Appointments</button></Link>
+   <Link to="/appointments" className="float-right" style={{marginTop:"10px"}}><button className="btn btn-sm btn-warning text-center font-italic border border-dark px-3 rounded font-weight-bold">{currentuser.role==="patient"?<span>Your Appointments</span>:<span>Edit Consulting Hours</span>}</button></Link>
    </div>:null
    } 
    <Switch>

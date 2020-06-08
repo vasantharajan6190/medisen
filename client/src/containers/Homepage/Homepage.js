@@ -29,8 +29,8 @@ function Homepage(props){
     function onsubmit(e){
         e.preventDefault()
         doctors.map(res=>{
-            if(res.specialization.toLowerCase()===search.toLowerCase()){
-                const doc = {name:`Dr.${res.name}`,mobile:res.mobile,specialization:res.specialization,from:res.from,to:res.to,address:res.address,booked:true,removed:false}
+            if(res.specializations.toLowerCase()===search.toLowerCase()){
+                const doc = {name:`Dr.${res.name}`,mobile:res.mobile,specializations:res.specializations,from:res.from,to:res.to,address:res.address,booked:true,removed:false}
                   setsearchresult(prev=>[...prev,{...doc}])
             }
         })
@@ -38,13 +38,14 @@ function Homepage(props){
             const separate = res.specializations.split(" ")
             separate.map(ans=>{
                 if(ans.toLowerCase()===search.toLowerCase()){
-                    const cli = {name:res.clinicname,mobile:res.mobile,specialization:ans,from:res.from,to:res.to,address:res.address,booked:true,removed:false}
+                    const cli = {name:res.clinicname,mobile:res.mobile,specializations:ans,from:res.from,to:res.to,address:res.address,booked:true,removed:false}
                     setsearchresult(prev=>[...prev,{...cli}])
                 }
             })
         })
         setclicked(true)
     }
+    console.log(currentuser)
     return(
         <div className="homepage">
      {loggedin?
