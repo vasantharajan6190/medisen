@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/medisen/static/css/main.c530a22e.chunk.css",
-    "main.js": "/medisen/static/js/main.03381649.chunk.js",
-    "main.js.map": "/medisen/static/js/main.03381649.chunk.js.map",
+    "main.js": "/medisen/static/js/main.a36b78e8.chunk.js",
+    "main.js.map": "/medisen/static/js/main.a36b78e8.chunk.js.map",
     "runtime-main.js": "/medisen/static/js/runtime-main.7cb01805.js",
     "runtime-main.js.map": "/medisen/static/js/runtime-main.7cb01805.js.map",
     "static/css/2.d34346ea.chunk.css": "/medisen/static/css/2.d34346ea.chunk.css",
-    "static/js/2.cbcbca63.chunk.js": "/medisen/static/js/2.cbcbca63.chunk.js",
-    "static/js/2.cbcbca63.chunk.js.map": "/medisen/static/js/2.cbcbca63.chunk.js.map",
+    "static/js/2.5f4a580e.chunk.js": "/medisen/static/js/2.5f4a580e.chunk.js",
+    "static/js/2.5f4a580e.chunk.js.map": "/medisen/static/js/2.5f4a580e.chunk.js.map",
     "index.html": "/medisen/index.html",
-    "precache-manifest.55c44222709df3052e1ec271357d44de.js": "/medisen/precache-manifest.55c44222709df3052e1ec271357d44de.js",
+    "precache-manifest.60d5627a3c822d6cbcc11e2edfb4d719.js": "/medisen/precache-manifest.60d5627a3c822d6cbcc11e2edfb4d719.js",
     "service-worker.js": "/medisen/service-worker.js",
     "static/css/2.d34346ea.chunk.css.map": "/medisen/static/css/2.d34346ea.chunk.css.map",
     "static/css/main.c530a22e.chunk.css.map": "/medisen/static/css/main.c530a22e.chunk.css.map",
-    "static/js/2.cbcbca63.chunk.js.LICENSE.txt": "/medisen/static/js/2.cbcbca63.chunk.js.LICENSE.txt",
+    "static/js/2.5f4a580e.chunk.js.LICENSE.txt": "/medisen/static/js/2.5f4a580e.chunk.js.LICENSE.txt",
     "static/media/App.css": "/medisen/static/media/homepage.ab36a5c5.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.7cb01805.js",
     "static/css/2.d34346ea.chunk.css",
-    "static/js/2.cbcbca63.chunk.js",
+    "static/js/2.5f4a580e.chunk.js",
     "static/css/main.c530a22e.chunk.css",
-    "static/js/main.03381649.chunk.js"
+    "static/js/main.a36b78e8.chunk.js"
   ]
 }
