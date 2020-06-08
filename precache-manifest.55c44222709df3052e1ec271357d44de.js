@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2d64bdec8629650f7923137c4ec73602",
+    "revision": "1dae5cad342e58fcb365975ca66eab88",
     "url": "/medisen/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/medisen/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "6b121257603a7dd9f502",
+    "revision": "142b9d0d978b9cd284d2",
     "url": "/medisen/static/css/main.c530a22e.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/medisen/static/js/2.cbcbca63.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6b121257603a7dd9f502",
-    "url": "/medisen/static/js/main.b1895735.chunk.js"
+    "revision": "142b9d0d978b9cd284d2",
+    "url": "/medisen/static/js/main.03381649.chunk.js"
   },
   {
     "revision": "9913fe59cc79418a3132",
