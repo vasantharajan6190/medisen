@@ -147,7 +147,7 @@ function App(props) {
   {loggedin?
     <div className="d-flex justify-content-between">
     <p className="pt-2 font-weight-bold">{currentuser.email.slice(0,8)}...</p>
-    <Link to="/medisen" className="mt-1"><button className="btn btn-sm btn-warning font-weight-bold ml-2 " onClick={onclick}>Log Out</button></Link>
+    <Link to="/medisen" className="mt-1"><button className="btn btn-sm btn-warning font-weight-bold ml-2 logout" onClick={onclick}>Log Out</button></Link>
     </div>
     :
     <div className="d-flex">
