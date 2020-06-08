@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "368e45403273927b016970aad8890382",
+    "revision": "2d64bdec8629650f7923137c4ec73602",
     "url": "/medisen/index.html"
   },
   {
-    "revision": "fbb49392f21327ec723a",
+    "revision": "a5929fb64cc1cfe02389",
     "url": "/medisen/static/css/2.d34346ea.chunk.css"
   },
   {
-    "revision": "22a62c4f9fdc74da677a",
+    "revision": "6b121257603a7dd9f502",
     "url": "/medisen/static/css/main.c530a22e.chunk.css"
   },
   {
-    "revision": "fbb49392f21327ec723a",
-    "url": "/medisen/static/js/2.7118ad9f.chunk.js"
+    "revision": "a5929fb64cc1cfe02389",
+    "url": "/medisen/static/js/2.cbcbca63.chunk.js"
   },
   {
     "revision": "3453b8997016469371284a28c0e873e2",
-    "url": "/medisen/static/js/2.7118ad9f.chunk.js.LICENSE.txt"
+    "url": "/medisen/static/js/2.cbcbca63.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "22a62c4f9fdc74da677a",
-    "url": "/medisen/static/js/main.74ece84f.chunk.js"
+    "revision": "6b121257603a7dd9f502",
+    "url": "/medisen/static/js/main.b1895735.chunk.js"
   },
   {
     "revision": "9913fe59cc79418a3132",
