@@ -56,6 +56,7 @@ function Signup(props){
       <input type="password" name="password" onChange={e=>onchange(e)} placeholder="Password" className="form-control"  required/>
     </div>
   </div>
+  <input type="text" className="form-control mb-3" placeholder="Age" name="age" onChange={e=>onchange(e)}/>
     <div className="dropdown mr-1">
     <div className="form-group">
     <select onChange={e=>onchange(e)} name="sex" className="form-control mb-3" required>

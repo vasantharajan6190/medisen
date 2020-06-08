@@ -13,6 +13,24 @@ export const Contextvariables = (props)=>{
   const [loggedin,setloggedin] = useState(false)
   const [currentuser,setcurrentuser] = useState()
   const [appointments,setappointments] = useState([])
+  const [docappointments,setdocappointments] =useState([
+    {
+      name:"Kaviya",
+      age:"20",
+      address:"20,Bharathiyar street,Erode",
+      bloodpressure:"210",
+      sugarlevel:"100",
+      bloodgroup:"O+ve"
+    },
+    {
+      name:"Gokul",
+      age:"40",
+      address:"330/A,2nd street,Erode",
+      bloodpressure:"110",
+      sugarlevel:"90",
+      bloodgroup:"AB+ve"
+    }
+  ])
   const [doctors,setdoctors] = useState([
     {
       name:"Vasantharajan",
@@ -106,7 +124,8 @@ export const Contextvariables = (props)=>{
       appointments:[appointments,setappointments],
       doctors:[doctors,setdoctors],
       clinic:[clinic,setclinic],
-      patients:[patients,setpatients]
+      patients:[patients,setpatients],
+      docappointments:[docappointments,setdocappointments]
     }}>
     {props.children}
     </createcontext.Provider>
@@ -146,7 +165,7 @@ function App(props) {
   <div className="float-right d-flex">
   {loggedin?
     <div className="d-flex justify-content-between">
-    <p className="pt-2 font-weight-bold">{currentuser.email.slice(0,8)}...</p>
+    <p className="pt-2 font-weight-bold">{currentuser.email.slice(0,5)}...</p>
     <Link to="/medisen" className="mt-1"><button className="btn btn-sm btn-warning font-weight-bold ml-2 logout" onClick={onclick}>Log Out</button></Link>
     </div>
     :
