@@ -45,7 +45,7 @@ function Homepage(props){
         })
         setclicked(true)
     }
-    console.log(currentuser)
+    console.log(clinic,doctors)
     return(
         <div className="homepage">
      {loggedin?
@@ -88,7 +88,7 @@ function Homepage(props){
 {(currentuser.role==="doctor"|| currentuser.role ==="clinic")?
 <div>
 <div className="text-center pt-5">
-<h1 className="font-weight-normal font-italic text-white display-4">Welcome <FaHandHoldingHeart className="text-warning"/>{currentuser.role==="doctor"?<span>Dr.{currentuser.name.charAt(0).toUpperCase()+currentuser.name.slice(1)}</span>:<span>{currentuser.name.charAt(0).toUpperCase()+currentuser.name.slice(1)}</span>} </h1>
+<h1 className="font-weight-normal font-italic text-white display-4">Welcome <FaHandHoldingHeart className="text-warning"/>{currentuser.role==="doctor"?<span>Dr.{currentuser.name.charAt(0).toUpperCase()+currentuser.name.slice(1)}</span>:<span>{currentuser.clinicname.charAt(0).toUpperCase()+currentuser.clinicname.slice(1)}</span>} </h1>
 </div>
 {docappointments.length===0?<h5 className="text-center mt-5 font-weight-bold font-italic">You have no appointments</h5>:
 <div className="container">

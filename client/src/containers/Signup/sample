@@ -1,0 +1,30 @@
+CREATE TABLE patients (
+    pat_id SERIAL NOT NULL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    email VARCHAR(200) NOT NULL,
+    password VARCHAR(200) NOT NULL,
+    age VARCHAR(200) NOT NULL,
+    gender VARCHAR(200) NOT NULL,
+    address VARCHAR(200) NOT NULL,
+    mobile VARCHAR(10) NOT NULL,
+    role VARCHAR(200) NOT NULL,
+    bloodgroup VARCHAR(200) NOT NULL,
+    bloodpressure VARCHAR(200) NOT NULL,
+    sugarlevel VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE clinics (
+    cli_id SERIAL NOT NULL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    email VARCHAR(200) NOT NULL,
+    password VARCHAR(200) NOT NULL,
+    age VARCHAR(200) NOT NULL,
+    gender VARCHAR(200) NOT NULL,
+    address VARCHAR(200) NOT NULL,
+    mobile VARCHAR(10) NOT NULL,
+    role VARCHAR(200) NOT NULL,
+    clinicname VARCHAR(200) NOT NULL,
+    specializations VARCHAR(200) NOT NULL,
+    from_to VARCHAR(200)NOT NULL,
+    to_to VARCHAR(200) NOT NULL
+);

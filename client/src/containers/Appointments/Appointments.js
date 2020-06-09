@@ -13,8 +13,23 @@ function Appointments(props){
     function onchange(e){
        setchanged({...changed,[e.target.name]:e.target.value})
     }
-    function onsubmit(e){
+    async function onsubmit(e){
         e.preventDefault()
+        const {from,to} = changed
+        const role = currentuser.role
+        let id=0
+        if(role==="doctor"){
+          id=currentuser.doc_id
+        }
+        else if(role==="clinic"){
+          id=currentuser.cli_id
+        }
+        const body = {from,to,role,id}
+        await fetch("http://localhost:5000/updatetime",{
+          method:"PUT",
+          headers:{"Content-type":"application/json"},
+          body:JSON.stringify(body)
+        })
         setcurrentuser({...currentuser,...changed})
         toast.success("Successfully Altered Consulting Hours",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
         history.push("/homepage")

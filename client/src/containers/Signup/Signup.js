@@ -32,12 +32,78 @@ function Signup(props){
             setclinic(false)
         }
     }
-      function onsubmit(e){
+      async function onsubmit(e){
           e.preventDefault()
+          if(user.role==="doctor"){
+          const {name,email,password,age,gender,address,mobile,role,mcino,qualifications,specializations,from,to} = user
+          const body = {name,email,password,age,gender,address,mobile,role,mcino,qualifications,specializations,from,to}
+          const backend = await fetch("http://localhost:5000/signupdoc",{
+            method:"POST",
+            headers:{"Content-type":"application/json"},
+            body:JSON.stringify(body)
+          })
+          const backenddata = await backend.json()
+          if(backenddata==="false"){
+            toast.error("User Already exists",{className:"text-center mt-4 rounded"})
+           }
+           else if(backenddata==="error"){
+            toast.error("Enter Proper Credentials",{className:"text-center mt-4 rounded"})
+           }
+           else{
+            console.log(user)
           toast.success("Successfully Registered",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
           setcurrentuser(user)
           setloggedin(true)
           history.push("/homepage")
+           }
+          }
+          else if(user.role==="patient"){
+            const {name,email,password,age,gender,address,mobile,role,bloodgroup,bloodpressure,sugarlevel} = user
+            const body = {name,email,password,age,gender,address,mobile,role,bloodgroup,bloodpressure,sugarlevel}
+            const backend = await fetch("http://localhost:5000/signuppat",{
+              method:"POST",
+              headers:{"Content-type":"application/json"},
+              body:JSON.stringify(body)
+            })
+            const backenddata = await backend.json()
+          if(backenddata==="false"){
+            toast.error("User Already exists",{className:"text-center mt-4 rounded"})
+           }
+           else if(backenddata==="error"){
+            toast.error("Enter Proper Credentials",{className:"text-center mt-4 rounded"})
+           }
+           else{
+            console.log(user)
+          toast.success("Successfully Registered",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
+          setcurrentuser(user)
+          setloggedin(true)
+          history.push("/homepage")
+           }
+          }
+          else if(user.role==="clinic"){
+            const {name,email,password,age,gender,address,mobile,role,clinicname,specializations,from,to} = user
+            const body = {name,email,password,age,gender,address,mobile,role,clinicname,specializations,from,to}
+            const backend = await fetch("http://localhost:5000/signupcli",{
+              method:"POST",
+              headers:{"Content-type":"application/json"},
+              body:JSON.stringify(body)
+            })
+            const backenddata = await backend.json()
+          if(backenddata==="false"){
+            toast.error("User Already exists",{className:"text-center mt-4 rounded"})
+           }
+           else if(backenddata==="error"){
+            toast.error("Enter Proper Credentials",{className:"text-center mt-4 rounded"})
+           }
+           else{
+            console.log(user)
+          toast.success("Successfully Registered",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
+          setcurrentuser(user)
+          setloggedin(true)
+          history.push("/homepage")
+           }
+          }
+          
       }
     
     return(
@@ -59,7 +125,7 @@ function Signup(props){
   <input type="text" className="form-control mb-3" placeholder="Age" name="age" onChange={e=>onchange(e)}/>
     <div className="dropdown mr-1">
     <div className="form-group">
-    <select onChange={e=>onchange(e)} name="sex" className="form-control mb-3" required>
+    <select onChange={e=>onchange(e)} name="gender" className="form-control mb-3" required>
     <option>Select Your Gender</option> 
     <option value="male">male</option>
       <option value="female">Female</option>
@@ -67,7 +133,7 @@ function Signup(props){
     </select>
   </div>
   </div>
-  <textarea cols="10" rows="4" placeholder="Enter your address here..." className="form-control" required>
+  <textarea cols="10" rows="4" name="address" onChange={e=>onchange(e)} placeholder="Enter your address here..." className="form-control" required>
   
   </textarea>
     <input type="text" name="mobile" placeholder="Mobile no" onChange={e=>onchange(e)} className="form-control my-3" required/>

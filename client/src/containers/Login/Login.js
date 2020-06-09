@@ -9,29 +9,37 @@ function Login(props){
     const [loggedin,setloggedin] = main.loggedin
     const [currentuser,setcurrentuser] = main.currentuser
      const [user,setuser] = useState({
+         role:"",
          email:"",
          password:""
      })
      function onchange(e){
          setuser({...user,[e.target.name]:e.target.value})
      }
-    function onsubmit(e){
+    async function onsubmit(e){
         e.preventDefault()
-        if(currentuser.email===user.email){
-            if(currentuser.password===user.password){
-            toast.success("Successfully Loggedin",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
-            setloggedin(true)
-            setcurrentuser(user)
-            history.push("/homepage")
-            }
-            else{
-                toast.error("Password doen't match",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
-            }
+        const {email,password,role} = user
+        const body = {email,password,role}
+        const response = await fetch("http://localhost:5000/login",{
+            method:"POST",
+            headers:{"Content-type":"application/json"},
+            body:JSON.stringify(body)
+        })
+        const ans = await response.json()
+        if(ans==="false"){
+            toast.error("User doesn't exists",{className:"text-center mt-4"})
+        }
+        else if(ans==="incorrect"){
+            toast.error("Password incorrect",{className:"text-center mt-4"})
         }
         else{
-            toast.error("User Doesn't exists",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
-            setuser("")
-        }
+            toast.success("Successfully Loggedin",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
+            setcurrentuser(ans[0])
+            setloggedin(true)
+            console.log(ans)
+           // history.push("/medisen")
+            history.push("/homepage")
+            }
       
     }
     return(
@@ -41,6 +49,16 @@ function Login(props){
         <p className="text-center font-weight-normal font-italic display-4" style={{ color:"black"}}>Login</p>
         <div className="d-flex justify-content-center">
         <form style={{width:"50%"}} onSubmit={onsubmit}>
+        <div className="dropdown mr-1">
+        <div className="form-group">
+        <select onChange={e=>onchange(e)} name="role" className="form-control mb-3" required>
+        <option>Select Your Role</option> 
+        <option value="doctor" >Doctor</option>
+          <option value="clinic">Clinic</option>
+          <option value="patient">Patient</option>
+        </select>
+      </div>
+      </div>
         <input type="email" name="email" placeholder="Email" value={user.email} onChange={e=>onchange(e)} className="form-control my-3" required/>
         <input type="password" name="password" placeholder="Password" value={user.password} onChange={e=>onchange(e)} className="form-control my-3" required/>
         <div className="d-flex justify-content-center">

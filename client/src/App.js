@@ -1,4 +1,4 @@
-import React,{useState,createContext,useContext} from 'react';
+import React,{useState,createContext,useContext,useEffect} from 'react';
 import {Switch,Route,BrowserRouter,Link} from "react-router-dom"
 import './App.css';
 import { toast } from "react-toastify";
@@ -13,110 +13,10 @@ export const Contextvariables = (props)=>{
   const [loggedin,setloggedin] = useState(false)
   const [currentuser,setcurrentuser] = useState()
   const [appointments,setappointments] = useState([])
-  const [docappointments,setdocappointments] =useState([
-    {
-      name:"Kaviya",
-      age:"20",
-      address:"20,Bharathiyar street,Erode",
-      bloodpressure:"210",
-      sugarlevel:"100",
-      bloodgroup:"O+ve"
-    },
-    {
-      name:"Gokul",
-      age:"40",
-      address:"330/A,2nd street,Erode",
-      bloodpressure:"110",
-      sugarlevel:"90",
-      bloodgroup:"AB+ve"
-    }
-  ])
-  const [doctors,setdoctors] = useState([
-    {
-      name:"Vasantharajan",
-      email:"mahaperiyavar100@gmail.com",
-      password:"1234",
-      gender:"male",
-      address:"34,nadar street,vadugapatti",
-      mobile:"9677861286",
-      role:"Doctor",
-      mcino:"1545gh",
-      qualifications:"MBBS..,MD..",
-      specializations:"cardiologist",
-      from:"10.20AM",
-      to:"11.50AM"
-    },
-    {
-      name:"Karthi",
-      email:"mahaperiyavar100@gmail.com",
-      password:"1234",
-      gender:"male",
-      address:"34,nadar street,vadugapatti",
-      mobile:"9677861286",
-      role:"Doctor",
-      mcino:"1545gh",
-      qualifications:"MBBS..,MD..",
-      specializations:"cardiologist",
-      from:"10.20AM",
-      to:"11.50AM"
-    },
-    {
-      name:"Dhanasneyka",
-      email:"dhanasneyka@gmail.com",
-      password:"1234",
-      gender:"female",
-      address:"34,nadar street,vadugapatti",
-      mobile:"9003441975",
-      role:"Doctor",
-      mcino:"2345gh",
-      qualifications:"MBBS..,M.pharm..",
-      specializations:"Neurologist",
-      from:"11.30AM",
-      to:"1.30PM"
-    }
-  ])
-  const [clinic,setclinic] = useState([
-    {
-      name:"Santhi",
-      email:"santhiclinic@gmail.com",
-      password:"1234",
-      gender:"female",
-      address:"34,nadar street,vadugapatti",
-      mobile:"9003441975",
-      role:"Clinic",
-      clinicname:"Santhi Clinic",
-      specializations:"Neurologist Cardiologist",
-      from:"11.30AM",
-      to:"1.30PM"
-    },
-    {
-      name:"Gopal",
-      email:"gopalclinic@gmail.com",
-      password:"1234",
-      gender:"male",
-      address:"34,nadar street,vadugapatti",
-      mobile:"9003441975",
-      role:"Clinic",
-      clinicname:"Gopal clinic",
-      specializations:"Neurologist",
-      from:"11.30AM",
-      to:"1.30PM"
-    }
-  ])
-  const [patients,setpatients] = useState([
-    {
-      name:"Gopal",
-      email:"gopal@gmail.com",
-      password:"1234",
-      gender:"male",
-      address:"34,nadar street,vadugapatti",
-      mobile:"9003441975",
-      role:"Patient",
-      bloodpressure:120,
-      bloodgroup:"o+ve",
-      sugarlevel:120
-    }
-  ])
+  const [docappointments,setdocappointments] =useState([])
+  const [doctors,setdoctors] = useState([])
+  const [clinic,setclinic] = useState([])
+  const [patients,setpatients] = useState([])
   return(
     <createcontext.Provider value={{
       loggedin : [loggedin,setloggedin],
@@ -133,10 +33,23 @@ export const Contextvariables = (props)=>{
 }
 toast.configure({autoClose:2000});
 function App(props) {
-  
   const main = useContext(createcontext)
   const [loggedin,setloggedin] = main.loggedin
   const [currentuser,setcurrentuser] = main.currentuser
+  const [doctors,setdoctors] = main.doctors
+  const [clinic,setclinic] = main.clinic
+  async function clinicget(){
+    const doct1 = await fetch("http://localhost:5000/clinics")
+    const ans1 = await doct1.json()
+    setclinic(ans1)
+  }
+  async function doctorsget(){
+    const doct = await fetch("http://localhost:5000/doc")
+    const ans = await doct.json()
+    setdoctors(ans)
+    clinicget()
+  }
+  useEffect(()=>{doctorsget()},[loggedin])
   let bool = false
   if(loggedin===true){
     bool=true
