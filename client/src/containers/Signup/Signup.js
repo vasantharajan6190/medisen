@@ -1,4 +1,4 @@
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext,useEffect} from 'react'
 import {Link,useHistory} from "react-router-dom"
 import "./Signup.css"
 import { createcontext } from '../../App'
@@ -11,6 +11,7 @@ function Signup(props){
     const [currentuser,setcurrentuser] = main.currentuser
     const [doc,setdoc] = useState(false)
     const [count,setcount] = useState([])
+    const [specialization,setspecialization] = main.specialization
     const [clinic,setclinic] = useState(false)
     const [patient,setpatient] = useState(false)
     const [user,setuser] = useState({})
@@ -34,6 +35,7 @@ function Signup(props){
     }
       async function onsubmit(e){
           e.preventDefault()
+          console.log(user)
           if(user.role==="doctor"){
           const {name,email,password,age,gender,address,mobile,role,mcino,qualifications,specializations,from,to} = user
           const body = {name,email,password,age,gender,address,mobile,role,mcino,qualifications,specializations,from,to}
@@ -103,9 +105,7 @@ function Signup(props){
           history.push("/homepage")
            }
           }
-          
       }
-    
     return(
         <div className="signup">
         {loggedin?<p className="text-center font-weight-normal display-4">Already Logged In</p>:
@@ -162,7 +162,13 @@ function Signup(props){
 </div>
 <div className="form-group">
   <label htmlFor="inputAddress" className="font-weight-bold">Specialization</label>
-  <input type="text"  onChange={e=>onchange(e)} name="specializations"  className="form-control" id="inputAddress" placeholder="Cardiologist,Neuroligist,etc..." required/>
+  <select type="text"  onChange={e=>onchange(e)} name="specializations"  className="form-control" id="inputAddress" placeholder="Cardiologist,Neuroligist,etc..." required>
+  {
+    specialization.map((res,index)=>(
+      <option key={index} value={res}>{res}</option>
+    ))
+  }
+  </select>
 </div>
 <div className="form-group">
 <p className="font-weight-bold text-center">Select Your Consulting Hours</p>
@@ -186,9 +192,14 @@ function Signup(props){
   <input type="text" onChange={e=>onchange(e)} className="form-control" name="clinicname" id="inputEmail4" placeholder="Clinic Name" required/>
 </div>
 <div className="form-group col-md-6">
-<label htmlFor="inputAddress" className="font-weight-bold">Specializations Available</label>
-<input type="text"  onChange={e=>onchange(e)} name="specializations"  className="form-control" id="inputAddress" placeholder="Cardiologist,Neuroligist,etc..." required/>
-
+<label htmlFor="inputAddress" className="font-weight-bold">Specialization</label>
+  <select type="text"  onChange={e=>onchange(e)} name="specializations"  className="form-control" id="inputAddress" placeholder="Cardiologist,Neuroligist,etc..." required>
+  {
+    specialization.map((res,index)=>(
+      <option key={index} value={res}>{res}</option>
+    ))
+  }
+  </select>
 </div>
 </div>
 

@@ -1,4 +1,4 @@
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext,useEffect} from 'react'
 import "./Homepage.css"
 import { FaHandHoldingHeart,FaCheck } from 'react-icons/fa';
 import {createcontext} from "../../App"
@@ -19,18 +19,43 @@ function Homepage(props){
     const [docappointments,setdocappointments] = main.docappointments
     const [patients,setpatients] = main.patients
     const [clicked,setclicked] = useState(false)
+    const [specialization,setspecialization] = main.specialization
     let unable=true
+    async function getappointments(){
+        console.log("getappoinemnt")
+        
+        const role = currentuser.role
+        let id =0
+        if(role==="doctor"){
+          id = currentuser.doc_id
+        }
+        else if(role==="clinic"){
+            id = currentuser.cli_id
+        }
+        else if(role==="patient"){
+            id = currentuser.pat_id
+        }
+        const ans = await fetch(`http://localhost:5000/appointments?role=${role}&id=${id}`)
+        const result = await ans.json()
+        if(role==="patient"){
+           setappointments(result)
+        }
+        else{
+           setdocappointments(result)
+        }
+    }
+    useEffect(()=>{getappointments()},[])
     function onchange(e){
         setsearch(e.target.value)
         setsearchresult([])
         setclicked(false)
     }
-   
+    
     function onsubmit(e){
         e.preventDefault()
         doctors.map(res=>{
             if(res.specializations.toLowerCase()===search.toLowerCase()){
-                const doc = {name:`Dr.${res.name}`,mobile:res.mobile,specializations:res.specializations,from:res.from,to:res.to,address:res.address,booked:true,removed:false}
+                const doc = {name:`Dr.${res.name}`,role:res.role,doc_id:res.doc_id,mobile:res.mobile,specializations:res.specializations,from:res.from,to:res.to,address:res.address,booked:true,removed:false}
                   setsearchresult(prev=>[...prev,{...doc}])
             }
         })
@@ -38,14 +63,13 @@ function Homepage(props){
             const separate = res.specializations.split(" ")
             separate.map(ans=>{
                 if(ans.toLowerCase()===search.toLowerCase()){
-                    const cli = {name:res.clinicname,mobile:res.mobile,specializations:ans,from:res.from,to:res.to,address:res.address,booked:true,removed:false}
+                    const cli = {name:res.clinicname,mobile:res.mobile,cli_id:res.cli_id,specializations:ans,from:res.from,to:res.to,address:res.address,booked:true,removed:false,role:res.role}
                     setsearchresult(prev=>[...prev,{...cli}])
                 }
             })
         })
         setclicked(true)
     }
-    console.log(clinic,doctors)
     return(
         <div className="homepage">
      {loggedin?
@@ -60,7 +84,14 @@ function Homepage(props){
         <div className="d-flex justify-content-center form-group">
         <form className="form-inline mt-3" onSubmit={e=>onsubmit(e)}>
         <div className="form-group mx-sm-3 mb-2">
-          <input type="text" className="border border-dark rounded form-control" id="inputPassword2" name="specsreq" onChange={e=>onchange(e)} placeholder="Search For Specialization"/>
+        <label htmlFor="inputAddress" className="font-weight-bold">Specialization : </label>
+  <select type="text"  name="specsreq" onChange={e=>onchange(e)} placeholder="Search For Specialization"  className="form-control ml-2" id="inputAddress" placeholder="Cardiologist,Neuroligist,etc..." required>
+  {
+    specialization.map((res,index)=>(
+      <option key={index} value={res}>{res}</option>
+    ))
+  }
+  </select>
         </div>
         <button type="submit" className="btn btn-warning mb-2 px-4 font-weight-bold" style={{marginLeft:"5px"}}>Search</button>
       </form>

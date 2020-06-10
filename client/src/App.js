@@ -17,6 +17,7 @@ export const Contextvariables = (props)=>{
   const [doctors,setdoctors] = useState([])
   const [clinic,setclinic] = useState([])
   const [patients,setpatients] = useState([])
+  const [specialization,setspecialization] = useState([])
   return(
     <createcontext.Provider value={{
       loggedin : [loggedin,setloggedin],
@@ -25,7 +26,8 @@ export const Contextvariables = (props)=>{
       doctors:[doctors,setdoctors],
       clinic:[clinic,setclinic],
       patients:[patients,setpatients],
-      docappointments:[docappointments,setdocappointments]
+      docappointments:[docappointments,setdocappointments],
+      specialization:[specialization,setspecialization]
     }}>
     {props.children}
     </createcontext.Provider>
@@ -38,10 +40,17 @@ function App(props) {
   const [currentuser,setcurrentuser] = main.currentuser
   const [doctors,setdoctors] = main.doctors
   const [clinic,setclinic] = main.clinic
+  const [specialization,setspecialization] = main.specialization
+  async function getspecialization(){
+    const ans3 = await fetch("http://localhost:5000/specializations")
+    const ans4 = await ans3.json()
+    setspecialization(ans4)
+  }
   async function clinicget(){
     const doct1 = await fetch("http://localhost:5000/clinics")
     const ans1 = await doct1.json()
     setclinic(ans1)
+    getspecialization()
   }
   async function doctorsget(){
     const doct = await fetch("http://localhost:5000/doc")

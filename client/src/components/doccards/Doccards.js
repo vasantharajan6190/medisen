@@ -3,14 +3,26 @@ import {toast} from "react-toastify"
 import {useHistory,useLocation} from "react-router-dom"
 import { FaHandHoldingHeart,FaCheck } from 'react-icons/fa';
 import {createcontext} from "../../App"
+import axios from "axios"
 function Doccards({res}){
     const history = useHistory()
     const location = useLocation()
     const routename = location.pathname
     const main = useContext(createcontext)
+    const [currentuser,setcurrentuser] = main.currentuser
     const [docappointments,setdocappointments] = main.docappointments
-    function onclick(e){
+    async function onclick(e){
         e.preventDefault()
+        const pat_id = res.pat_id
+        const role = currentuser.role
+        let id=0
+        if(role==="doctor"){
+          id = currentuser.doc_id
+        }
+        else if(role==="clinic"){
+            id = currentuser.cli_id
+        }
+        const ans = await axios.delete(`http://localhost:5000/docclidelete?pat_id=${pat_id}&role=${role}&id=${id}`)
         let indexto= 0
         docappointments.map((result,index)=>{
             if(result.name===res.name){
