@@ -8,6 +8,7 @@ import { FaHandHoldingHeart,FaHeartbeat } from 'react-icons/fa';
 import Signup from "./containers/Signup/Signup"
 import Homepage from "./containers/Homepage/Homepage"
 import Appointments from "./containers/Appointments/Appointments"
+import Profile from "./containers/Profile/Profile"
 export const createcontext = createContext()
 export const Contextvariables = (props)=>{
   const [loggedin,setloggedin] = useState(false)
@@ -102,8 +103,13 @@ function App(props) {
    </nav>
    </div>
    {loggedin?
-   <div className="container">
+    <div>
+   <div className="">
    <Link to="/appointments" className="float-right" style={{marginTop:"10px"}}><button className="btn btn-sm btn-warning text-center font-italic border border-dark px-3 rounded font-weight-bold">{currentuser.role==="patient"?<span>Your Appointments</span>:<span>Edit Consulting Hours</span>}</button></Link>
+   </div>
+   <div className="">
+   <Link to="/profile" className="float-right" style={{marginTop:"10px"}}><button className="btn btn-sm mr-2 btn-warning text-center font-italic border border-dark rounded font-weight-bold">Profile</button></Link>
+   </div>
    </div>:null
    } 
    <Switch>
@@ -111,6 +117,7 @@ function App(props) {
     <Route path="/login" exact component={Login}/>
     <Route path="/signup" exact component={Signup}/>
     <Route path="/appointments" exact component={Appointments}/>
+    <Route path="/profile" exact component={Profile}/>
     <Route path="/medisen" exact>
     <div className="app">
     <div className="row container">

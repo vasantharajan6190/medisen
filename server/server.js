@@ -1,12 +1,13 @@
 const express =require("express")
 const cors = require("cors")
 const app = express()
+const fileUpload = require('express-fileupload')
 const port = process.env.PORT || 5000
 const db = require("./config/db")
 app.use(cors())
 app.use(express.json())
 
-
+app.use(fileUpload())
 db.authenticate()
 .then(res=>console.log("database connected"))
 .catch(err=>console.log(err))

@@ -4,7 +4,9 @@ const Doctor  = require("../models/doctor")
 const Patient = require("../models/patient")
 const Clinic = require("../models/clinic")
 const Specialization = require("../models/specializations")
+const fileUpload = require('express-fileupload')
 const Appointment = require("../models/appointment")
+const multer = require("multer")
 //Signup routes
 //doc signup
 router.post("/signupdoc",async (req,res)=>{
@@ -269,5 +271,24 @@ router.delete("/docclidelete",async(req,res)=>{
     } catch (error) {
         res.json(error)
     }
+})
+//image
+router.post("/image",async(req,res)=>{
+    const {role,id} = req.query
+    const file= req.files.file
+    file.mv(`${__dirname}/uploads/${file.name}`)
+    const path = `${__dirname}\\uploads\\${file.name}`
+    if(role==="doctor"){
+        const ans = await Doctor.update({image:path},{where:{doc_id:id}})
+        res.json(ans)
+     }
+     else if(role==="clinic"){
+        const ans = await Clinic.update({image:path},{where:{cli_id:id}})
+         res.json(ans)
+     }
+     else if(role==="patient"){
+        const ans = await Patient.update({image:path},{where:{pat_id:id}})
+         res.json(ans)
+     }
 })
 module.exports = router

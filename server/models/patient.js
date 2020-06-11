@@ -53,6 +53,9 @@ const Patient = db.define("patient",{
         type:Sequelize.STRING(200),
         allowNull:false
     },
+    image:{
+        type:Sequelize.STRING(500)
+      },
     createdAt:Sequelize.DATE,
     updatedAt:Sequelize.DATE
 })

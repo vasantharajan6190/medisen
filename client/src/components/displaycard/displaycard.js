@@ -91,6 +91,7 @@ function Displaycard(props){
     return(
         <div className="container">
         <div className="card" style={{marginBottom:"20px"}}>
+        <img src={currentcard.image} class="card-img-top" alt="..."/>
         <h3 className="card-header font-italic font-weight-bold text-white bg-dark">{currentcard.name}</h3>
         <div className="card-body" style={{backgroundColor:"aliceblue"}}>
           <h3 className="card-title font-italic  font-weight-bold"> {currentcard.specializations.charAt(0).toUpperCase()+currentcard.specializations.slice(1)}</h3>

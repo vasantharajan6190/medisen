@@ -12,6 +12,8 @@ function Homepage(props){
     const [searchresult,setsearchresult] = useState([])
     const main = useContext(createcontext)
     const [loggedin,setloggedin] = main.loggedin
+    if(loggedin===false)
+    {window.location = "/login"}
     const [currentuser,setcurrentuser] = main.currentuser
     const [appointments,setappointments] = main.appointments
     const [doctors,setdoctors] = main.doctors
@@ -55,7 +57,7 @@ function Homepage(props){
         e.preventDefault()
         doctors.map(res=>{
             if(res.specializations.toLowerCase()===search.toLowerCase()){
-                const doc = {name:`Dr.${res.name}`,role:res.role,doc_id:res.doc_id,mobile:res.mobile,specializations:res.specializations,from:res.from,to:res.to,address:res.address,booked:true,removed:false}
+                const doc = {name:`Dr.${res.name}`,role:res.role,doc_id:res.doc_id,mobile:res.mobile,specializations:res.specializations,from:res.from,to:res.to,address:res.address,booked:true,removed:false,image:res.image}
                   setsearchresult(prev=>[...prev,{...doc}])
             }
         })
@@ -63,7 +65,7 @@ function Homepage(props){
             const separate = res.specializations.split(" ")
             separate.map(ans=>{
                 if(ans.toLowerCase()===search.toLowerCase()){
-                    const cli = {name:res.clinicname,mobile:res.mobile,cli_id:res.cli_id,specializations:ans,from:res.from,to:res.to,address:res.address,booked:true,removed:false,role:res.role}
+                    const cli = {name:res.clinicname,mobile:res.mobile,cli_id:res.cli_id,specializations:ans,from:res.from,to:res.to,address:res.address,booked:true,removed:false,role:res.role,image:res.image}
                     setsearchresult(prev=>[...prev,{...cli}])
                 }
             })

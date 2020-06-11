@@ -7,6 +7,9 @@ import { toast } from "react-toastify"
 function Appointments(props){
     const history = useHistory()
     const main = useContext(createcontext)
+    const [loggedin,setloggedin] = main.loggedin
+    if(loggedin===false)
+    {window.location = "/login"}
     const [appointments,setappointments] = main.appointments
     const [currentuser,setcurrentuser] = main.currentuser
     const [changed,setchanged] = useState({})
@@ -48,11 +51,11 @@ function Appointments(props){
           <form className="form-inline justify-content-center" onSubmit={e=>onsubmit(e)}>
           <div className="form-group mb-2">
             <label htmlFor="staticEmail2" className="font-weight-bold font-italic mr-3" style={{fontSize:"20px"}}>From:</label>
-            <input type="text" name="from" onChange={e=>onchange(e)} className="form-control mr-3" id="staticEmail2" placeholder={currentuser.from}/>
+            <input type="time" name="from" onChange={e=>onchange(e)} className="form-control mr-3" id="staticEmail2" placeholder={currentuser.from}/>
           </div>
           <div className="form-group ml-3 mb-2">
             <label htmlFor="inputPassword2" className="font-weight-bold font-italic mr-3" style={{fontSize:"20px"}}>To:</label>
-            <input type="text" name="to" onChange={e=>onchange(e)} className="form-control" id="inputPassword2" placeholder={currentuser.to}/>
+            <input type="time" name="to" onChange={e=>onchange(e)} className="form-control" id="inputPassword2" placeholder={currentuser.to}/>
           </div>
           <button type="submit" className="btn btn-dark font-weight-bold border border-white px-5 ml-3 mb-2">Save</button>
         </form>

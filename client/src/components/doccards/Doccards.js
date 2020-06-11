@@ -36,6 +36,7 @@ function Doccards({res}){
     return(
         <div className="container">
         <div className="card" style={{marginBottom:"20px"}}>
+        <img src={res.image} class="card-img-top" alt="..."/>
         <h3 className="card-header font-italic font-weight-bold text-white bg-dark">
           {res.name}
         </h3>

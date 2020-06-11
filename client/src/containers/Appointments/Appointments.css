@@ -3,3 +3,9 @@
     min-height:522px;
     max-height:auto
 }
+#staticEmail2{
+    content: attr(placeholder);
+}
+#inputPassword2{
+    content: attr(placeholder);
+}
