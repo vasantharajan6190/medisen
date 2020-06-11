@@ -4,6 +4,7 @@ import {useHistory,useLocation} from "react-router-dom"
 import { FaHandHoldingHeart,FaCheck } from 'react-icons/fa';
 import {createcontext} from "../../App"
 import axios from "axios"
+import "./Doccards.css"
 function Doccards({res}){
     const history = useHistory()
     const location = useLocation()
@@ -36,11 +37,11 @@ function Doccards({res}){
     return(
         <div className="container">
         <div className="card" style={{marginBottom:"20px"}}>
-        <img src={res.image} class="card-img-top" alt="..."/>
         <h3 className="card-header font-italic font-weight-bold text-white bg-dark">
           {res.name}
         </h3>
         <div className="card-body" style={{backgroundColor:"aliceblue"}}>
+        <img src={`http://localhost:5000/uploads/${res.image}`} className="img-thumbnail" alt="..." width="220"/>
           <h5 className="card-title  font-italic  font-weight-bold">Age : {res.age}</h5>
           <p className="card-text font-weight-bold"><h5 className="font-italic font-weight-bold">Address : </h5>{res.address}</p>
           <div className="d-flex justify-content-start mb-3">

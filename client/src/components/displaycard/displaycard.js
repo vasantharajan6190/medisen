@@ -3,6 +3,7 @@ import {useHistory,useLocation} from "react-router-dom"
 import {toast} from "react-toastify"
 import {createcontext} from "../../App"
 import axios from "axios"
+import "./displaycard.css"
 function Displaycard(props){
     const location = useLocation()
     const history = useHistory()
@@ -91,10 +92,10 @@ function Displaycard(props){
     return(
         <div className="container">
         <div className="card" style={{marginBottom:"20px"}}>
-        <img src={currentcard.image} class="card-img-top" alt="..."/>
         <h3 className="card-header font-italic font-weight-bold text-white bg-dark">{currentcard.name}</h3>
         <div className="card-body" style={{backgroundColor:"aliceblue"}}>
           <h3 className="card-title font-italic  font-weight-bold"> {currentcard.specializations.charAt(0).toUpperCase()+currentcard.specializations.slice(1)}</h3>
+          <img src={`http://localhost:5000/uploads/${currentcard.image}`} className="img-thumbnail" alt="..." width="220"/>
           <p className="card-text font-weight-bold"><h5 className="font-italic font-weight-bold">Address:</h5> {currentcard.address}</p>
           <p className="font-weight-bold"><h5 className="font-italic font-weight-bold">Contact:</h5> {currentcard.mobile}</p>
           <h5 className="font-weight-bold font-italic">Consulting Hours:</h5>

@@ -29,7 +29,7 @@ function Profile(){
             <p className="font-weight-bold display-4 font-italic text-center text-white">Your Profile</p>
             <div className="d-flex justify-content-center pt-4">
             <div className="text-left">
-            <img className="mb-3 img-thumbnail bg-secondary rounded mx-auto d-block" src={currentuser.image} width="290" height="200"/>
+            <img className="mb-3 img-thumbnail bg-secondary rounded mx-auto d-block" src={`http://localhost:5000/uploads/${currentuser.image}`}width="290" height="200"/>
            <label>Edit Profile Image : </label>
             <FilePond server={`http://localhost:5000/image?role=${role}&id=${id}`} name="file"/>
             <h5><span >Name : </span><span>{currentuser.name}</span></h5>

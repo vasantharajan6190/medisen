@@ -4,5 +4,8 @@
     max-height:auto
 }
 @media screen and (min-width : 0px) and (max-width : 767px){
-    .profile{height:680px}
+    .profile{
+        min-height:680px;
+        height:100%;
+    }
     }

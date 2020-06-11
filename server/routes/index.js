@@ -2,6 +2,7 @@ const router = require("express").Router()
 const bcrypt = require("bcrypt")
 const Doctor  = require("../models/doctor")
 const Patient = require("../models/patient")
+const path = require("path")
 const Clinic = require("../models/clinic")
 const Specialization = require("../models/specializations")
 const fileUpload = require('express-fileupload')
@@ -276,19 +277,26 @@ router.delete("/docclidelete",async(req,res)=>{
 router.post("/image",async(req,res)=>{
     const {role,id} = req.query
     const file= req.files.file
-    file.mv(`${__dirname}/uploads/${file.name}`)
-    const path = `${__dirname}\\uploads\\${file.name}`
-    if(role==="doctor"){
-        const ans = await Doctor.update({image:path},{where:{doc_id:id}})
-        res.json(ans)
-     }
-     else if(role==="clinic"){
-        const ans = await Clinic.update({image:path},{where:{cli_id:id}})
-         res.json(ans)
-     }
-     else if(role==="patient"){
-        const ans = await Patient.update({image:path},{where:{pat_id:id}})
-         res.json(ans)
-     }
+    const ree = path.join(__dirname,"../public/uploads")
+    file.mv(`${ree}\\${file.name}`)
+    const path1 = `${file.name}`
+    try {
+        if(role==="doctor"){
+            const ans = await Doctor.update({image:path1},{where:{doc_id:id}})
+            res.json(ans)
+         }
+         else if(role==="clinic"){
+            const ans = await Clinic.update({image:path1},{where:{cli_id:id}})
+             res.json(ans)
+         }
+         else if(role==="patient"){
+            const ans = await Patient.update({image:path1},{where:{pat_id:id}})
+             res.json(ans)
+         }
+    } catch (error) {
+        console.log(error)
+    }
+   
 })
+
 module.exports = router
