@@ -4,6 +4,7 @@ import Displaycard from "../../components/displaycard/displaycard"
 import "./Appointments.css"
 import {createcontext} from "../../App"
 import { toast } from "react-toastify"
+import {unregister} from "../../Interceptor"
 function Appointments(props){
     const history = useHistory()
     const main = useContext(createcontext)
@@ -30,7 +31,7 @@ function Appointments(props){
         const body = {from,to,role,id}
         await fetch("http://localhost:5000/updatetime",{
           method:"PUT",
-          headers:{"Content-type":"application/json",token:localStorage.token},
+          headers:{},
           body:JSON.stringify(body)
         })
         setcurrentuser({...currentuser,...changed})

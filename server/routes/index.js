@@ -39,7 +39,7 @@ router.post("/login",async(req,res)=>{
     }
 })
 //get all doctors
-router.get("/doc",tokencheck,async(req,res)=>{
+router.get("/doc",async(req,res)=>{
     try {
         const result = await controller.getdoc()
         res.json(result)
@@ -49,7 +49,7 @@ router.get("/doc",tokencheck,async(req,res)=>{
   
 })
 //get all clinics
-router.get("/clinics",tokencheck,async(req,res)=>{
+router.get("/clinics",async(req,res)=>{
     try {
        const clinics = await controller.getclinic()
         res.json(clinics)

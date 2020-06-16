@@ -9,6 +9,7 @@ import Signup from "./containers/Signup/Signup"
 import Homepage from "./containers/Homepage/Homepage"
 import Appointments from "./containers/Appointments/Appointments"
 import Profile from "./containers/Profile/Profile"
+import {unregister} from "./Interceptor"
 export const createcontext = createContext()
 export const Contextvariables = (props)=>{
   const [loggedin,setloggedin] = useState(false)
@@ -43,22 +44,18 @@ function App(props) {
   const [clinic,setclinic] = main.clinic
   const [specialization,setspecialization] = main.specialization
   async function getspecialization(){
-    const ans3 = await fetch("http://localhost:5000/specializations")
+    const ans3 = await fetch("http://localhost:5000/specializations",{headers:{}})
     const ans4 = await ans3.json()
     setspecialization(ans4)
   }
   async function clinicget(){
-    const doct1 = await fetch("http://localhost:5000/clinics",{
-      headers:{"Content-type":"application/json",token:localStorage.token}
-    })
+    const doct1 = await fetch("http://localhost:5000/clinics",{headers:{}})
     const ans1 = await doct1.json()
     setclinic(ans1)
     getspecialization()
   }
   async function doctorsget(){
-    const doct = await fetch("http://localhost:5000/doc",{
-      headers:{"Content-type":"application/json",token:localStorage.token}
-    })
+    const doct = await fetch("http://localhost:5000/doc",{headers:{}})
     const ans = await doct.json()
     setdoctors(ans)
     clinicget()

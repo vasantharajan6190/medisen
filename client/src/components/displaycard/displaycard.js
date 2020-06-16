@@ -2,6 +2,7 @@ import React,{useState,useContext,useEffect} from "react"
 import {useHistory,useLocation} from "react-router-dom"
 import {toast} from "react-toastify"
 import {createcontext} from "../../App"
+import {unregister} from "../../Interceptor"
 import axios from "axios"
 import "./displaycard.css"
 function Displaycard(props){
@@ -29,7 +30,7 @@ function Displaycard(props){
             const body = {role,id,pat_id}
             const ans = await fetch("http://localhost:5000/appointments",{
               method:"POST",
-              headers:{"Content-type":"application/json",token:localStorage.token},
+              headers:{},
               body:JSON.stringify(body)
             })
             toast.success("Appointment Booked",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
@@ -57,7 +58,7 @@ function Displaycard(props){
             const body = {role,id,pat_id}
             const ans = await fetch("http://localhost:5000/appointments",{
               method:"POST",
-              headers:{"Content-type":"application/json",token:localStorage.token},
+              headers:{},
               body:JSON.stringify(body)
             })
         toast.success("Appointment Booked",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
@@ -77,8 +78,9 @@ function Displaycard(props){
         else if(role==="clinic"){
             id = currentcard.cli_id
         }
-        const ans = await axios.delete(`http://localhost:5000/docclidelete?pat_id=${pat_id}&role=${role}&id=${id}`,{
-          headers:{"Content-type":"application/json",token:localStorage.token}
+        const ans = await fetch(`http://localhost:5000/docclidelete?pat_id=${pat_id}&role=${role}&id=${id}`,{
+          method:"DELETE",  
+          headers:{}
         })       
         let indextodel=0
         toast.success("Appointment cancelled",{className:"text-center font-weight-bold font-italic mt-5 rounded"})

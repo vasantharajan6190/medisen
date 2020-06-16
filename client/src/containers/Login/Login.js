@@ -3,6 +3,7 @@ import {Link,useHistory} from "react-router-dom"
 import "./Login.css"
 import {createcontext} from "../../App"
 import {toast} from "react-toastify"
+import {unregister} from "../../Interceptor"
 function Login(props){
     const history = useHistory()
     const main = useContext(createcontext)
@@ -22,7 +23,7 @@ function Login(props){
         const body = {email,password,role}
         const response = await fetch("http://localhost:5000/login",{
             method:"POST",
-            headers:{"Content-type":"application/json"},
+            headers:{},
             body:JSON.stringify(body)
         })
         const {ans,token} = await response.json()

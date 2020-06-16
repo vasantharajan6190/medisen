@@ -4,6 +4,7 @@ import {useHistory,useLocation} from "react-router-dom"
 import { FaHandHoldingHeart,FaCheck } from 'react-icons/fa';
 import {createcontext} from "../../App"
 import axios from "axios"
+import {unregister} from "../../Interceptor"
 import "./Doccards.css"
 function Doccards({res}){
     const history = useHistory()
@@ -23,8 +24,9 @@ function Doccards({res}){
         else if(role==="clinic"){
             id = currentuser.cli_id
         }
-        const ans = await axios.delete(`http://localhost:5000/docclidelete?pat_id=${pat_id}&role=${role}&id=${id}`,{
-          headers:{"Content-type":"application/json",token:localStorage.token}
+        const ans = await fetch(`http://localhost:5000/docclidelete?pat_id=${pat_id}&role=${role}&id=${id}`,{
+        method:"DELETE",  
+        headers:{}
         })        
         let indexto= 0
         docappointments.map((result,index)=>{

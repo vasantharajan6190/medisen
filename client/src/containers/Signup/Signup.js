@@ -3,7 +3,7 @@ import {Link,useHistory} from "react-router-dom"
 import "./Signup.css"
 import { createcontext } from '../../App'
 import {toast} from "react-toastify"
-
+import {unregister} from "../../Interceptor"
 function Signup(props){
     const history = useHistory()
     const main = useContext(createcontext)
@@ -35,13 +35,12 @@ function Signup(props){
     }
       async function onsubmit(e){
           e.preventDefault()
-          console.log(user)
           if(user.role==="doctor"){
           const {name,email,password,age,gender,address,mobile,role,mcino,qualifications,specializations,from,to} = user
           const body = {name,email,password,age,gender,address,mobile,role,mcino,qualifications,specializations,from,to}
           const backend = await fetch("http://localhost:5000/signupdoc",{
             method:"POST",
-            headers:{"Content-type":"application/json"},
+            headers:{},
             body:JSON.stringify(body)
           })
           const {backenddata,token} = await backend.json()
@@ -64,7 +63,7 @@ function Signup(props){
             const body = {name,email,password,age,gender,address,mobile,role,bloodgroup,bloodpressure,sugarlevel}
             const backend = await fetch("http://localhost:5000/signuppat",{
               method:"POST",
-              headers:{"Content-type":"application/json"},
+              headers:{},
               body:JSON.stringify(body)
             })
             const backenddata = await backend.json()
@@ -75,7 +74,6 @@ function Signup(props){
             toast.error("Enter Proper Credentials",{className:"text-center mt-4 rounded"})
            }
            else{
-            console.log(user)
           toast.success("Successfully Registered",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
           setcurrentuser(user)
           setloggedin(true)
@@ -87,7 +85,7 @@ function Signup(props){
             const body = {name,email,password,age,gender,address,mobile,role,clinicname,specializations,from,to}
             const backend = await fetch("http://localhost:5000/signupcli",{
               method:"POST",
-              headers:{"Content-type":"application/json"},
+              headers:{},
               body:JSON.stringify(body)
             })
             const backenddata = await backend.json()
@@ -98,7 +96,6 @@ function Signup(props){
             toast.error("Enter Proper Credentials",{className:"text-center mt-4 rounded"})
            }
            else{
-            console.log(user)
           toast.success("Successfully Registered",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
           setcurrentuser(user)
           setloggedin(true)

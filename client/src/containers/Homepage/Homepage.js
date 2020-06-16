@@ -4,7 +4,7 @@ import { FaHandHoldingHeart,FaCheck } from 'react-icons/fa';
 import {createcontext} from "../../App"
 import Displaycard from "../../components/displaycard/displaycard"
 import Doccards from "../../components/doccards/Doccards"
-
+import {unregister} from "../../Interceptor"
 function Homepage(props){
     let display = false
     let unknown = false
@@ -24,8 +24,6 @@ function Homepage(props){
     const [specialization,setspecialization] = main.specialization
     let unable=true
     async function getappointments(){
-        console.log("getappoinemnt")
-        
         const role = currentuser.role
         let id =0
         if(role==="doctor"){
@@ -37,9 +35,7 @@ function Homepage(props){
         else if(role==="patient"){
             id = currentuser.pat_id
         }
-        const ans = await fetch(`http://localhost:5000/appointments?role=${role}&id=${id}`,{
-            headers:{"Content-type":"application/json",token:localStorage.token}
-          })
+        const ans = await fetch(`http://localhost:5000/appointments?role=${role}&id=${id}`,{headers:{}})
         const result = await ans.json()
         if(role==="patient"){
            setappointments(result)
