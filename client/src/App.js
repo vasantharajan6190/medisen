@@ -48,13 +48,17 @@ function App(props) {
     setspecialization(ans4)
   }
   async function clinicget(){
-    const doct1 = await fetch("http://localhost:5000/clinics")
+    const doct1 = await fetch("http://localhost:5000/clinics",{
+      headers:{"Content-type":"application/json",token:localStorage.token}
+    })
     const ans1 = await doct1.json()
     setclinic(ans1)
     getspecialization()
   }
   async function doctorsget(){
-    const doct = await fetch("http://localhost:5000/doc")
+    const doct = await fetch("http://localhost:5000/doc",{
+      headers:{"Content-type":"application/json",token:localStorage.token}
+    })
     const ans = await doct.json()
     setdoctors(ans)
     clinicget()

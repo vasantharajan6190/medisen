@@ -25,7 +25,7 @@ function Login(props){
             headers:{"Content-type":"application/json"},
             body:JSON.stringify(body)
         })
-        const ans = await response.json()
+        const {ans,token} = await response.json()
         if(ans==="false"){
             toast.error("User doesn't exists",{className:"text-center mt-4"})
         }
@@ -36,8 +36,7 @@ function Login(props){
             toast.success("Successfully Loggedin",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
             setcurrentuser(ans[0])
             setloggedin(true)
-            console.log(ans)
-           // history.push("/medisen")
+            localStorage.setItem("token",token)
             history.push("/homepage")
             }
       

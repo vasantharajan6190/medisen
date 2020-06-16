@@ -23,7 +23,9 @@ function Doccards({res}){
         else if(role==="clinic"){
             id = currentuser.cli_id
         }
-        const ans = await axios.delete(`http://localhost:5000/docclidelete?pat_id=${pat_id}&role=${role}&id=${id}`)
+        const ans = await axios.delete(`http://localhost:5000/docclidelete?pat_id=${pat_id}&role=${role}&id=${id}`,{
+          headers:{"Content-type":"application/json",token:localStorage.token}
+        })        
         let indexto= 0
         docappointments.map((result,index)=>{
             if(result.name===res.name){

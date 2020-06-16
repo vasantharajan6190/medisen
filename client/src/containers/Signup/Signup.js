@@ -44,7 +44,7 @@ function Signup(props){
             headers:{"Content-type":"application/json"},
             body:JSON.stringify(body)
           })
-          const backenddata = await backend.json()
+          const {backenddata,token} = await backend.json()
           if(backenddata==="false"){
             toast.error("User Already exists",{className:"text-center mt-4 rounded"})
            }
@@ -52,10 +52,10 @@ function Signup(props){
             toast.error("Enter Proper Credentials",{className:"text-center mt-4 rounded"})
            }
            else{
-            console.log(user)
           toast.success("Successfully Registered",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
           setcurrentuser(user)
           setloggedin(true)
+          localStorage.setItem("token",token)
           history.push("/homepage")
            }
           }
