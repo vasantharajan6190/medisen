@@ -106,7 +106,7 @@ function App(props) {
    {loggedin?
     <div>
    <div className="">
-   <Link to="/appointments" className="float-right" style={{marginTop:"10px"}}><button className="btn btn-sm btn-warning text-center font-italic border border-dark px-3 rounded font-weight-bold">{currentuser.role==="patient"?<span>Your Appointments</span>:<span>Edit Consulting Hours</span>}</button></Link>
+   <Link to="/appointments" className="float-right" style={{marginTop:"10px"}}><button className="btn btn-sm btn-warning text-center font-italic border border-dark px-3 rounded font-weight-bold">{currentuser.role==="patient"?<span>Your Appointments</span>:<span>Edit Consulting Settings</span>}</button></Link>
    </div>
    <div className="">
    <Link to="/profile" className="float-right" style={{marginTop:"10px"}}><button className="btn btn-sm mr-2 btn-warning text-center font-italic border border-dark rounded font-weight-bold">Profile</button></Link>

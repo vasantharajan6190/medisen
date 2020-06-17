@@ -33,6 +33,7 @@ router.post("/signupcli",async (req,res)=>{
 router.post("/login",async(req,res)=>{
     try {
         const result = await controller.login(req.body)
+        console.log(result)
         res.json(result)
     } catch (error) {
         res.json(error)
@@ -87,9 +88,12 @@ router.get("/specializations",async(req,res)=>{
 })
 //appointments
 //create appointments
-router.post("/appointments",tokencheck,async(req,res)=>{
+router.post("/appointments",async(req,res)=>{
    try {
        const result = await controller.createappointment(req.body)
+       if(result==="false"){
+           res.json("false")
+       }
        res.json(result)
    } catch (error) {
        res.json(error)

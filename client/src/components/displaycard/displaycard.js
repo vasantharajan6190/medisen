@@ -33,9 +33,15 @@ function Displaycard(props){
               headers:{},
               body:JSON.stringify(body)
             })
+            const res= await ans.json()
+            if(res==="false"){
+              toast.error("Appoitnment Slot is full",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
+            }
+            else{
             toast.success("Appointment Booked",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
             setappointments([...appointments,{...currentcard}])
             history.push(routename)
+            }
         }
         else{
         appointments.map(async res=>{
@@ -61,9 +67,15 @@ function Displaycard(props){
               headers:{},
               body:JSON.stringify(body)
             })
-        toast.success("Appointment Booked",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
-        setappointments([...appointments,{...currentcard}])
-        history.push(routename)
+            const res= await ans.json()
+            if(res==="false"){
+              toast.error("Appoitnment Slot is full",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
+            }
+            else{
+            toast.success("Appointment Booked",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
+            setappointments([...appointments,{...currentcard}])
+            history.push(routename)
+            }
         }})}
     }
     async function removeapp(e){

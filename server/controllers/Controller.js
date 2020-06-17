@@ -10,7 +10,7 @@ const fileUpload = require('express-fileupload')
 const path = require("path")
 
 async function signupdoc(body){
-    const {name,email,password,age,gender,address,mobile,role,mcino,qualifications,specializations,from,to} = body
+    const {name,email,password,age,gender,address,mobile,role,mcino,qualifications,specializations,from,to,limit} = body
     const ans = await Doctor.findAll({where:{email}})
 if(ans.length>0){
     return "false"
@@ -22,7 +22,7 @@ else{
     else{
     const salt = await bcrypt.genSalt(10);
     const hashedpassword = await bcrypt.hash(password,salt)
-   const user = await Doctor.create({email,name,password:hashedpassword,age,gender,address,mobile,role,mcino,qualifications,specializations,from,to})
+   const user = await Doctor.create({email,name,password:hashedpassword,age,gender,address,mobile,role,mcino,qualifications,specializations,from,to,limit})
    const token = tokengenerator(user.doc_id)
    return {backenddata:user,token}
     }
@@ -51,7 +51,7 @@ async function signuppat(body){
 }
 
 async function signupcli(body){
-    const {name,email,password,age,gender,address,mobile,role,clinicname,specializations,from,to} = body
+    const {name,email,password,age,gender,address,mobile,role,clinicname,specializations,from,to,limit} = body
     const ans = await Clinic.findAll({where:{email}})
 if(ans.length>0){
     return "false"
@@ -63,7 +63,7 @@ else{
     else{
     const salt = await bcrypt.genSalt(10);
     const hashedpassword = await bcrypt.hash(password,salt)
-   const user = await Clinic.create({email,name,password:hashedpassword,age,gender,address,mobile,role,clinicname,specializations,from,to})
+   const user = await Clinic.create({email,name,password:hashedpassword,age,gender,address,mobile,role,limit,clinicname,specializations,from,to})
    const token = tokengenerator(user.cli_id)
    return {backenddata:user,token}
     }
@@ -136,13 +136,13 @@ async function getclinic(){
 }
 
 async function updatetime(body){
-    const {from,to,id,role} = body
+    const {from,to,limit,id,role} = body
     if(role==="doctor"){
-      const ans = await Doctor.update({from,to},{where:{doc_id:id}})
+      const ans = await Doctor.update({from,to,limit},{where:{doc_id:id}})
       return (ans)
     }
     else if(role==="clinic"){
-     const ans =await  Clinic.update({from,to},{where:{cli_id:id}})
+     const ans =await  Clinic.update({from,to,limit},{where:{cli_id:id}})
      return (ans)
     }
 }
@@ -162,12 +162,24 @@ async function getspecialization(){
 async function createappointment(body){
     const {role,id,pat_id} = body
         if(role==="doctor"){
-           const ans = await Appointment.create({pat_id,doc_id:id})
-           return ans
+            const check = await Doctor.findAll({attributes:["limit"],where:{doc_id:id}})
+            const lengthcheck = check[0].dataValues.limit
+            const willcheck = await Appointment.findAll({attributes:["app_id"],where:{doc_id:id}})
+            if(lengthcheck>=willcheck.length){
+                const ans = await Appointment.create({pat_id,doc_id:id})
+                return ans
+            }
+             return "false"
         }
         else if(role==="clinic"){
-            const ans = await Appointment.create({pat_id,cli_id:id})
-            return ans
+            const check = await Clinic.findAll({attributes:["limit"],where:{cli_id:id}})
+            const lengthcheck = check[0].dataValues.limit
+            const willcheck = await Appointment.findAll({attributes:["app_id"],where:{cli_id:id}})
+            if(lengthcheck>=willcheck.length){
+                const ans = await Appointment.create({pat_id,cli_id:id})
+                return ans
+            }
+            return "false"
         }
 }
 

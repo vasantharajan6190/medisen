@@ -67,6 +67,9 @@ module.exports = {
         image:{
             type:Sequelize.STRING(500)
           },
+          limit:{
+            type:Sequelize.STRING(100)
+        },
         createdAt:Sequelize.DATE,
         updatedAt:Sequelize.DATE
     })

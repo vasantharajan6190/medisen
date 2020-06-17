@@ -35,73 +35,74 @@ function Signup(props){
     }
       async function onsubmit(e){
           e.preventDefault()
-          if(user.role==="doctor"){
-          const {name,email,password,age,gender,address,mobile,role,mcino,qualifications,specializations,from,to} = user
-          const body = {name,email,password,age,gender,address,mobile,role,mcino,qualifications,specializations,from,to}
-          const backend = await fetch("http://localhost:5000/signupdoc",{
-            method:"POST",
-            headers:{},
-            body:JSON.stringify(body)
-          })
-          const {backenddata,token} = await backend.json()
-          if(backenddata==="false"){
-            toast.error("User Already exists",{className:"text-center mt-4 rounded"})
-           }
-           else if(backenddata==="error"){
-            toast.error("Enter Proper Credentials",{className:"text-center mt-4 rounded"})
-           }
-           else{
-          toast.success("Successfully Registered",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
-          setcurrentuser(user)
-          setloggedin(true)
-          localStorage.setItem("token",token)
-          history.push("/homepage")
-           }
-          }
-          else if(user.role==="patient"){
-            const {name,email,password,age,gender,address,mobile,role,bloodgroup,bloodpressure,sugarlevel} = user
-            const body = {name,email,password,age,gender,address,mobile,role,bloodgroup,bloodpressure,sugarlevel}
-            const backend = await fetch("http://localhost:5000/signuppat",{
-              method:"POST",
-              headers:{},
-              body:JSON.stringify(body)
-            })
-            const backenddata = await backend.json()
-          if(backenddata==="false"){
-            toast.error("User Already exists",{className:"text-center mt-4 rounded"})
-           }
-           else if(backenddata==="error"){
-            toast.error("Enter Proper Credentials",{className:"text-center mt-4 rounded"})
-           }
-           else{
-          toast.success("Successfully Registered",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
-          setcurrentuser(user)
-          setloggedin(true)
-          history.push("/homepage")
-           }
-          }
-          else if(user.role==="clinic"){
-            const {name,email,password,age,gender,address,mobile,role,clinicname,specializations,from,to} = user
-            const body = {name,email,password,age,gender,address,mobile,role,clinicname,specializations,from,to}
-            const backend = await fetch("http://localhost:5000/signupcli",{
-              method:"POST",
-              headers:{},
-              body:JSON.stringify(body)
-            })
-            const backenddata = await backend.json()
-          if(backenddata==="false"){
-            toast.error("User Already exists",{className:"text-center mt-4 rounded"})
-           }
-           else if(backenddata==="error"){
-            toast.error("Enter Proper Credentials",{className:"text-center mt-4 rounded"})
-           }
-           else{
-          toast.success("Successfully Registered",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
-          setcurrentuser(user)
-          setloggedin(true)
-          history.push("/homepage")
-           }
-          }
+          console.log(user)
+          // if(user.role==="doctor"){
+          // const {name,email,password,age,gender,address,mobile,role,mcino,qualifications,specializations,from,to,limit} = user
+          // const body = {name,email,password,age,gender,address,mobile,role,mcino,qualifications,specializations,from,to,limit}
+          // const backend = await fetch("http://localhost:5000/signupdoc",{
+          //   method:"POST",
+          //   headers:{},
+          //   body:JSON.stringify(body)
+          // })
+          // const {backenddata,token} = await backend.json()
+          // if(backenddata==="false"){
+          //   toast.error("User Already exists",{className:"text-center mt-4 rounded"})
+          //  }
+          //  else if(backenddata==="error"){
+          //   toast.error("Enter Proper Credentials",{className:"text-center mt-4 rounded"})
+          //  }
+          //  else{
+          // toast.success("Successfully Registered",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
+          // setcurrentuser(user)
+          // setloggedin(true)
+          // localStorage.setItem("token",token)
+          // history.push("/homepage")
+          //  }
+          // }
+          // else if(user.role==="patient"){
+          //   const {name,email,password,age,gender,address,mobile,role,bloodgroup,bloodpressure,sugarlevel} = user
+          //   const body = {name,email,password,age,gender,address,mobile,role,bloodgroup,bloodpressure,sugarlevel}
+          //   const backend = await fetch("http://localhost:5000/signuppat",{
+          //     method:"POST",
+          //     headers:{},
+          //     body:JSON.stringify(body)
+          //   })
+          //   const backenddata = await backend.json()
+          // if(backenddata==="false"){
+          //   toast.error("User Already exists",{className:"text-center mt-4 rounded"})
+          //  }
+          //  else if(backenddata==="error"){
+          //   toast.error("Enter Proper Credentials",{className:"text-center mt-4 rounded"})
+          //  }
+          //  else{
+          // toast.success("Successfully Registered",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
+          // setcurrentuser(user)
+          // setloggedin(true)
+          // history.push("/homepage")
+          //  }
+          // }
+          // else if(user.role==="clinic"){
+          //   const {name,email,password,age,gender,address,mobile,role,clinicname,specializations,from,to,limit} = user
+          //   const body = {name,email,password,age,gender,address,mobile,role,clinicname,specializations,from,to,limit}
+          //   const backend = await fetch("http://localhost:5000/signupcli",{
+          //     method:"POST",
+          //     headers:{},
+          //     body:JSON.stringify(body)
+          //   })
+          //   const backenddata = await backend.json()
+          // if(backenddata==="false"){
+          //   toast.error("User Already exists",{className:"text-center mt-4 rounded"})
+          //  }
+          //  else if(backenddata==="error"){
+          //   toast.error("Enter Proper Credentials",{className:"text-center mt-4 rounded"})
+          //  }
+          //  else{
+          // toast.success("Successfully Registered",{className:"text-center font-weight-bold font-italic mt-5 rounded"})
+          // setcurrentuser(user)
+          // setloggedin(true)
+          // history.push("/homepage")
+          //  }
+          // }
       }
     return(
         <div className="signup">
@@ -167,6 +168,8 @@ function Signup(props){
   }
   </select>
 </div>
+<label className="font-weight-bold">Limit of Patients Per Day : </label>
+<input className="form-control mb-2" type="text" placeholder="Limit of patients per day" name="limit" onChange={e=>onchange(e)}/>
 <div className="form-group">
 <p className="font-weight-bold text-center">Select Your Consulting Hours</p>
 <div className="d-flex justify-content-around">
@@ -199,6 +202,8 @@ function Signup(props){
   </select>
 </div>
 </div>
+<label className="font-weight-bold">Limit of Patients Per Day : </label>
+<input className="form-control mb-2" type="text" placeholder="Limit of patients per day" name="limit" onChange={e=>onchange(e)}/>
 
 <div className="form-group">
 <p className="font-weight-bold text-center">Clinic Working Hours</p>
